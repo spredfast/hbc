@@ -3,6 +3,8 @@
 It just appends `-SF` to the version to create `2.2.0-SF` so that it can be deployed to our repo.
 
 Deploy using 
+`mvn -X deploy:deploy-file -Dfile=pom.xml -DgroupId=com.twitter -DartifactId=hbc -Dversion=2.2.0-SF -DrepositoryId=spredfast-repository -Durl=https://buildrepo.sf-ops.net/artifactory/ext-release-local`
+from the root directory and then
 ` mvn -X deploy:deploy-file -DpomFile=pom.xml -Dfile=target/hbc-core-2.2.0-SF.jar -DrepositoryId=spredfast-repository -Durl=https://buildrepo.sf-ops.net/artifactory/ext-release-local`
 from the `hbc-core` directory. You'll need `~/.m2/settings.xml` updated with credentials that allow deploy.
 
