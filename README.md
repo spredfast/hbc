@@ -1,4 +1,10 @@
-This is a fork of [Twitter/HBC](https://github.com/twitter/hbc) that supports streaming from a Gnip PowerTrack 2.0 stream.
+**This is a fork of a fork of [Twitter/HBC](https://github.com/jimmoffitt/hbc) that supports streaming from a Gnip PowerTrack 2.0 stream.**
+
+It just appends `-SF` to the version to create `2.2.0-SF` so that it can be deployed to our repo.
+
+Deploy using 
+` mvn -X deploy:deploy-file -DpomFile=pom.xml -Dfile=target/hbc-core-2.2.0-SF.jar -DrepositoryId=spredfast-repository -Durl=https://buildrepo.sf-ops.net/artifactory/ext-release-local`
+from the `hbc-core` directory. You'll need `~/.m2/settings.xml` updated with credentials that allow deploy.
 
 ## Introduction <a class='tall' id='introduction'>&nbsp;</a>
 

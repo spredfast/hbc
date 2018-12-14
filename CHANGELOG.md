@@ -1,3 +1,7 @@
+== 2.2.0-SF
+
+Release version with PowerTrack for use by Spredfast.
+
 == 2.2.0
 * Add support for Gnip's PowerTrack streaming APIs.
 * Twitter4j - Fix user/message extraction for sitestreams (https://github.com/twitter/hbc/pull/118)
