@@ -1,3 +1,7 @@
+== 2.3.0-SF
+
+Release version with InsightsTrack for use by Spredfast.
+
 == 2.2.0-SF
 
 Release version with PowerTrack for use by Spredfast.
