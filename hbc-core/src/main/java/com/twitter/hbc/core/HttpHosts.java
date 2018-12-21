@@ -13,14 +13,13 @@
 
 package com.twitter.hbc.core;
 
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
-
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 
 public class HttpHosts implements Hosts {
 
@@ -55,4 +54,5 @@ public class HttpHosts implements Hosts {
   public static final HttpHosts STREAM_HOST = new HttpHosts("https://stream.twitter.com");
   public static final HttpHosts USERSTREAM_HOST = new HttpHosts("https://userstream.twitter.com");
   public static final HttpHosts SITESTREAM_HOST = new HttpHosts("https://sitestream.twitter.com");
+  public static final HttpHosts INSIGHTS_HOST = new HttpHosts("https://data-api.twitter.com");
 }
