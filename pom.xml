@@ -5,7 +5,7 @@
   <groupId>com.twitter</groupId>
   <artifactId>hbc</artifactId>
   <packaging>pom</packaging>
-  <version>2.3.0-SF</version>
+  <version>2.3.1-SF</version>
   <url>https://github.com/spredfast/hbc</url>
   <description>A Java HTTP client for consuming Twitter's Streaming API</description>
   <modules>
