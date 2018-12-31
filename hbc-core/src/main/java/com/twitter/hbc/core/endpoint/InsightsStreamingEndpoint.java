@@ -5,7 +5,7 @@ import com.twitter.hbc.core.HttpConstants;
 /**
  * See http://support.gnip.com/apis/p/insightstrack/api_reference.html#GET
  */
-public abstract class InsightsStreamingEndpoint implements StreamingEndpoint {
+public class InsightsStreamingEndpoint implements StreamingEndpoint {
 
 	// /stream/insightstrack/accounts/{account-name}/publishers/twitter/{stream-label}.json
 	private static final String BASE_PATH = "/stream/insightstrack/accounts/%s/publishers/twitter/%s.json";
