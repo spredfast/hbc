@@ -13,21 +13,6 @@
 
 package com.twitter.hbc.httpclient.auth;
 
-import com.google.common.base.Charsets;
-import com.google.common.base.Joiner;
-import com.google.common.base.Preconditions;
-import com.twitter.hbc.core.HttpConstants;
-import com.twitter.joauth.Normalizer;
-import com.twitter.joauth.OAuthParams;
-import com.twitter.joauth.Request.Pair;
-import com.twitter.joauth.Signer;
-import com.twitter.joauth.UrlCodec;
-import org.apache.http.HttpHeaders;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.impl.client.AbstractHttpClient;
-
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -35,6 +20,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.http.HttpHeaders;
+import org.apache.http.NameValuePair;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.impl.client.AbstractHttpClient;
+import com.google.common.base.Charsets;
+import com.google.common.base.Joiner;
+import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
+import com.twitter.hbc.core.HttpConstants;
+import com.twitter.joauth.Normalizer;
+import com.twitter.joauth.OAuthParams;
+import com.twitter.joauth.Request.Pair;
+import com.twitter.joauth.Signer;
+import com.twitter.joauth.UrlCodec;
 
 public class OAuth1 implements Authentication {
 
@@ -131,13 +132,10 @@ public class OAuth1 implements Authentication {
     request.setHeader(HttpHeaders.AUTHORIZATION, "OAuth " + header);
 
   }
-  
-  public String getUsername() {
-      return null;
-  }
 
-  public String getPassword() {
-     return null;
+  @Override
+  public Optional<UsernamePasswordCredentials> getUsernameAndPassword() {
+    return Optional.absent();
   }
 
   private String quoted(String str) {

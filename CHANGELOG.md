@@ -1,3 +1,8 @@
+== 2.4.0-SF
+
+Only add Authorization header with Basic value when there is a username and
+password.
+
 == 2.3.1-SF
 
 Release version with updates for InsightsTrack for use by Spredfast.

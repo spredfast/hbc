@@ -4,9 +4,11 @@ import java.io.IOException;
 import org.apache.http.HttpException;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpRequestInterceptor;
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.protocol.HttpContext;
+import com.google.common.base.Optional;
 
 public class OAuth2 implements Authentication {
 
@@ -30,12 +32,7 @@ public class OAuth2 implements Authentication {
 	public void signRequest(final HttpUriRequest request, final String postContent) { }
 
 	@Override
-	public String getUsername() {
-		return null;
-	}
-
-	@Override
-	public String getPassword() {
-		return null;
+	public Optional<UsernamePasswordCredentials> getUsernameAndPassword() {
+		return Optional.absent();
 	}
 }

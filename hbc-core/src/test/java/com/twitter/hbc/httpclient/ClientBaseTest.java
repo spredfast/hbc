@@ -13,6 +13,7 @@
 
 package com.twitter.hbc.httpclient;
 
+import com.google.common.base.Optional;
 import com.twitter.hbc.BasicReconnectionManager;
 import com.twitter.hbc.RateTracker;
 import com.twitter.hbc.ReconnectionManager;
@@ -24,6 +25,7 @@ import com.twitter.hbc.httpclient.auth.Authentication;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.junit.Before;
@@ -61,6 +63,7 @@ public class ClientBaseTest {
 
     mockInputStream = mock(InputStream.class);
     mockAuth = mock(Authentication.class);
+    when(mockAuth.getUsernameAndPassword()).thenReturn(Optional.<UsernamePasswordCredentials>absent());
 
     mockProcessor = mock(HosebirdMessageProcessor.class);
 

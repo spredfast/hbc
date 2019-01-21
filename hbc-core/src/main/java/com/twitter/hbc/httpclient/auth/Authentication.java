@@ -13,17 +13,17 @@
 
 package com.twitter.hbc.httpclient.auth;
 
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.AbstractHttpClient;
+import com.google.common.base.Optional;
 
 public interface Authentication {
 
   void setupConnection(AbstractHttpClient client);
   void signRequest(HttpUriRequest request, String postContent);
-  
-  //Adding these here is not ideal, since this interface is implemented by both BasicAuth and OAuth1 classes, and OAuth1 has no use for username/password.
-  //This interface is small, and could be eliminated.  
-  String getUsername();
-  String getPassword();
+
+  // BasicAuth provides username and password, OAuth1 and OAuth2 don't.
+  Optional<UsernamePasswordCredentials> getUsernameAndPassword();
   
 }

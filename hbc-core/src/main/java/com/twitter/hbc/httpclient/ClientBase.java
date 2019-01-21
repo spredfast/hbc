@@ -14,6 +14,7 @@
 package com.twitter.hbc.httpclient;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 import com.twitter.hbc.RateTracker;
 import com.twitter.hbc.ReconnectionManager;
@@ -28,6 +29,7 @@ import com.twitter.hbc.core.event.HttpResponseEvent;
 import com.twitter.hbc.core.processor.HosebirdMessageProcessor;
 import com.twitter.hbc.httpclient.auth.Authentication;
 import org.apache.http.StatusLine;
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.slf4j.Logger;
@@ -140,12 +142,15 @@ class ClientBase implements Runnable {
           }
           auth.signRequest(request, postContent);
           
-          //PTv2 update: Explicitly adding Authorization header with Base64 encoded username and password. 
-          BASE64Encoder encoder = new BASE64Encoder();
-          String authToken =  auth.getUsername() + ":" + auth.getPassword();
-          String authValue = "Basic " + encoder.encode(authToken.getBytes());  
-          request.addHeader("Authorization", authValue);
-          
+          //PTv2 update: Explicitly adding Authorization header with Base64 encoded username and password.
+          // But only if needed.
+          final Optional<UsernamePasswordCredentials> usernameAndPassword = auth.getUsernameAndPassword();
+          if (usernameAndPassword.isPresent()) {
+            BASE64Encoder encoder = new BASE64Encoder();
+            String authToken = usernameAndPassword.get().getUserName() + ":" + usernameAndPassword.get().getPassword();
+            String authValue = "Basic " + encoder.encode(authToken.getBytes());
+            request.addHeader("Authorization", authValue);
+          }
           
           Connection conn = new Connection(client, processor);
           StatusLine status = establishConnection(conn, request);

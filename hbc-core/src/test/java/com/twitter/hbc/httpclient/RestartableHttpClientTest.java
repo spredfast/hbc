@@ -1,7 +1,9 @@
 package com.twitter.hbc.httpclient;
 
+import com.google.common.base.Optional;
 import com.twitter.hbc.httpclient.auth.Authentication;
 import java.net.UnknownHostException;
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.conn.scheme.SchemeRegistry;
@@ -11,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class RestartableHttpClientTest {
   private Authentication mockAuth;
@@ -21,6 +24,7 @@ public class RestartableHttpClientTest {
   @Before
   public void setup() throws Exception {
     mockAuth = mock(Authentication.class);
+    when(mockAuth.getUsernameAndPassword()).thenReturn(Optional.<UsernamePasswordCredentials>absent());
     mockParams = mock(HttpParams.class);
     defaultSchemeRegistry = SchemeRegistryFactory.createDefault();
     request = new HttpGet("http://hi");

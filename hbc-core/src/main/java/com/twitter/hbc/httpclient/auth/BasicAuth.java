@@ -13,11 +13,12 @@
 
 package com.twitter.hbc.httpclient.auth;
 
-import com.google.common.base.Preconditions;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.AbstractHttpClient;
+import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
 
 public class BasicAuth implements Authentication {
 
@@ -34,13 +35,10 @@ public class BasicAuth implements Authentication {
             new UsernamePasswordCredentials(username, password)
     );
   }
-  
-  public String getUsername() {
-      return this.username;
-  }
 
-  public String getPassword() {
-        return this.password;
+  @Override
+  public Optional<UsernamePasswordCredentials> getUsernameAndPassword() {
+    return Optional.of(new UsernamePasswordCredentials(username, password));
   }
 
   @Override
